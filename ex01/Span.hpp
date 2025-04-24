@@ -30,8 +30,8 @@ public:
     void addNumber(InputIt first, InputIt last);
 
     /* ────────────── スパン計算 ───────────── */
-    int shortestSpan() const;               // 最小差
-    int longestSpan()  const;               // 最大差
+    unsigned int shortestSpan() const;               // 最小差
+    unsigned int longestSpan()  const;               // 最大差
 
 private:
     std::vector<int> _data;                 // 実際の要素を保持

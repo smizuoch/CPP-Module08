@@ -43,7 +43,7 @@ void Span::addNumber(int value)
 /*   1) 要素数チェック → 例外                                                 */
 /*   2) コピーをソートし、隣接ペア差分の最小値を走査                           */
 /* ************************************************************************** */
-int Span::shortestSpan() const
+unsigned int Span::shortestSpan() const
 {
     if (_data.size() < 2)
         throw std::runtime_error("Span: not enough elements for span");
@@ -52,10 +52,10 @@ int Span::shortestSpan() const
     std::vector<int> tmp(_data);
     std::sort(tmp.begin(), tmp.end());
 
-    int min_span = INT_MAX;
+    unsigned int min_span = INT_MAX;
     for (size_t i = 1; i < tmp.size(); ++i)
     {
-        int diff = tmp[i] - tmp[i - 1];
+        unsigned int diff = tmp[i] - tmp[i - 1];
         if (diff < min_span)
             min_span = diff;
     }
@@ -66,13 +66,18 @@ int Span::shortestSpan() const
 /*                               最長スパン計算                                */
 /*   - 最小値と最大値の差を返すだけ → O(N)                                     */
 /* ************************************************************************** */
-int Span::longestSpan() const
+unsigned int Span::longestSpan() const
 {
     if (_data.size() < 2)
         throw std::runtime_error("Span: not enough elements for span");
 
-    int min_val = *std::min_element(_data.begin(), _data.end());
-    int max_val = *std::max_element(_data.begin(), _data.end());
+    long min_val = *std::min_element(_data.begin(), _data.end());
+    long max_val = *std::max_element(_data.begin(), _data.end());
+
+    // #include <iostream>
+    // std::cout << "min_val: " << min_val << std::endl;
+    // std::cout << "max_val: " << max_val << std::endl;
+    // std::cout << "max_val - min_val: " << max_val - min_val << std::endl;
 
     return max_val - min_val;
 }
